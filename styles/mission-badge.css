@@ -1,0 +1,35 @@
+.badge-story-action{position:absolute;left:5%;bottom:8%;z-index:12;border:1px solid #a08a58;border-radius:16px;background:#fff1cc;color:#3c4b51;padding:7px 11px;font:12px Georgia;cursor:pointer;max-width:85%}.mission-badge{position:absolute;z-index:8;border:0;background:none;padding:0;cursor:pointer;min-width:28px;min-height:28px;filter:drop-shadow(0 1px 1px #3c291c66)}.mission-badge svg{width:100%;height:100%;display:block}.badge-on-model{left:40%;top:53%;width:19%;height:19%;rotate:30deg;pointer-events:auto}.mission-flag{position:absolute;left:14%;top:35%;width:20%;height:40%;border-left:3px solid #aa8860;z-index:8;transform:translateY(-12%);transition:transform .6s}.mission-flag.planted{transform:translateY(12%)}.mission-flag .mission-badge{left:0;top:0;width:100%;height:auto;background:#f6e5b7;border-radius:0 8px 8px 0;padding:5px}.cover-star-button{position:absolute;left:73%;top:24%;z-index:9;color:#ffdc8e;background:transparent;border:0;font-size:36px;cursor:pointer;pointer-events:auto;text-shadow:0 0 12px #f6cd76}.stars-awake .twinkle{box-shadow:0 0 16px 6px #ffe6a8;opacity:1!important}.cover-atmosphere .activity-caption{display:block;color:#fff3cf;background:#173440b0;bottom:1%;font-size:11px}.badge-editor{width:min(440px,94vw);max-height:92dvh;overflow:auto;border:1px solid #a99b79;border-radius:16px;background:#fbf2dc;color:#304952;padding:20px;box-shadow:0 20px 80px #0008}.badge-editor::backdrop{background:#102b35b8}.badge-editor h2{margin:0;font:28px Georgia}.badge-help{font:13px/1.45 system-ui;margin:10px 0}.badge-name{display:block;font:12px system-ui}.badge-name input{display:block;width:100%;padding:9px;margin-top:5px;border:1px solid #b4b4a0;border-radius:6px;background:#fffdf4;color:#273c45;font:16px Georgia}.badge-canvas{width:min(250px,60vw);aspect-ratio:1;margin:12px auto;touch-action:none;cursor:crosshair}.badge-canvas svg{display:block;width:100%;height:100%}.badge-tools,.badge-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}.badge-editor button{padding:8px 10px;border:1px solid #b7aa8b;border-radius:7px;background:#fff9ea;color:#304952;cursor:pointer;font:12px system-ui}.badge-editor .badge-color{width:32px;height:32px;padding:0;font-size:0;border:3px solid transparent}.badge-color[aria-pressed=true]{outline:2px solid #314e58;outline-offset:2px}.badge-editor .badge-save{background:#426675;color:white}.badge-editor :focus-visible,.mission-badge:focus-visible,.badge-story-action:focus-visible,.cover-star-button:focus-visible{outline:3px solid #d99b39;outline-offset:3px}@media(max-width:600px){.badge-story-action{font-size:9px;padding:5px 7px;bottom:9%}.badge-editor{padding:14px}.cover-star-button{font-size:28px}}@media(prefers-reduced-motion:reduce){.mission-flag{transition:none}}
+.badge-on-model{pointer-events:none}.cover-atmosphere{pointer-events:none}.cover-atmosphere .cover-star-button{pointer-events:auto}
+
+/* Painted markings retain the metal texture beneath them. */
+.badge-on-model,.badge-painted{min-width:0;min-height:0;filter:none;mix-blend-mode:multiply;opacity:.82;transform:scaleX(.84) skewY(-5deg)}
+.badge-on-model svg circle,.badge-painted svg circle{fill:transparent;stroke-width:3}
+.mission-paint-layer{position:absolute;inset:0;pointer-events:none;transform-origin:center}
+.mission-paint-layer .mission-badge{pointer-events:auto}
+/* The pole, soil and contact shadow share the same artwork-space ground point. */
+.mission-flag,.mission-flag.planted{border:0;transform:none;transition:none;pointer-events:none}
+.flag-pole{position:absolute;left:0;top:0;width:3%;height:100%;background:linear-gradient(90deg,#5b4130,#cfad77 45%,#806044);border-radius:2px}
+.mission-flag .mission-badge{left:2%;top:2%;width:94%;height:38%;min-width:0;min-height:0;padding:5% 22%;border-radius:0;background:linear-gradient(100deg,#dcc795,#f0dfb4 30%,#c4ac79 63%,#ead4a4);clip-path:polygon(0 0,35% 3%,65% 0,100% 7%,96% 94%,65% 90%,35% 100%,0 96%);filter:none;transform-origin:left center;pointer-events:auto;animation:flag-breeze 4s ease-in-out infinite}
+.mission-flag .mission-badge svg{mix-blend-mode:multiply;opacity:.85}.mission-flag .mission-badge circle{fill:transparent;stroke-width:3}
+.flag-ground-shadow{position:absolute;left:-12%;bottom:-2%;width:86%;height:7%;border-radius:50%;background:radial-gradient(ellipse at 20% 50%,#552c22a8,transparent 70%);transform:rotate(-9deg);transform-origin:15% center}
+.flag-soil{position:absolute;left:-8%;bottom:-1%;width:20%;height:4%;background:linear-gradient(#bb7954,#865039);clip-path:polygon(0 70%,20% 30%,38% 45%,51% 0,73% 37%,100% 65%,85% 100%,15% 100%)}
+.mission-flag.planted .flag-soil{width:25%;left:-10%}
+@keyframes flag-breeze{0%,100%{transform:skewY(4deg) scaleX(.97)}50%{transform:skewY(-2deg) scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.mission-flag .mission-badge{animation:none}}
+
+.badge-draw-guide{text-align:center;font:600 15px/1.4 system-ui;color:#315f74;margin:14px 0 0}
+.badge-canvas{outline:2px dashed #839fa8;outline-offset:5px;border-radius:50%;background:#fff8e7}
+.scene-2 .badge-story-action{font:600 clamp(12px,1.1vw,17px)/1.3 system-ui;padding:10px 15px;background:#fff6df;border:2px solid #587d89;box-shadow:0 2px 5px #30271930;bottom:9%}
+
+.mission-paint-layer{transition:transform .35s ease-out}@media(prefers-reduced-motion:reduce){.mission-paint-layer{transition:none}}
+
+.scene-2 .sketch-paper{left:28%!important;top:48%!important;width:64%!important;height:38%!important;clip-path:none;border-radius:5px 12px 12px 5px;background:linear-gradient(90deg,#efe0bb 0%,#fff2d5 46%,#b5a17b 49%,#f4e6c7 51%,#fff3d6 96%,#d7c5a0);box-shadow:0 3px 0 #c6b38d,1px 5px 8px #291e1566;rotate:-3deg;cursor:crosshair}
+.scene-2 .sketch-paper svg{position:absolute;inset:0;width:100%;height:100%}
+.sketch-invitation{position:absolute;top:8%;left:8%;font:italic clamp(11px,1.2vw,18px) Georgia;color:#74644c;pointer-events:none}
+.scene-2 .badge-story-action{left:4%;bottom:auto;top:5%;max-width:90%}
+
+.mars-window-layer{pointer-events:none;z-index:1}.mars-window-layer svg{display:block;width:100%;height:100%}.mars-window-layer image{transition:transform .4s ease-out}@media(prefers-reduced-motion:reduce){.mars-window-layer image{transition:none}}
+
+/* Paint shares the rocket sprite's bounds, rotation, pivot and alpha silhouette. */
+.scene-7 .paint-surface{left:45%;top:24%;width:59%;height:auto;aspect-ratio:1;rotate:-30deg;transform-origin:50% 70%;clip-path:polygon(94% 0,98% 22%,88% 48%,88% 69%,66% 98%,62% 76%,47% 96%,18% 80%,28% 65%,3% 70%,13% 45%,41% 25%,59% 12%);mask-image:url('../assets/activities/objects.png');mask-size:400% 400%;mask-position:100% 66.666667%;mask-repeat:no-repeat;touch-action:none}
+.scene-7 .paint-surface{clip-path:none}

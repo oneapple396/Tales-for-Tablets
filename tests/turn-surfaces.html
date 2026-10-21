@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page surface inspection</title><link rel="stylesheet" href="../styles/book.css"><div class="controls"><button id="front">Forward front</button><button id="back">Forward reverse</button><button id="reverse">Backward reverse</button></div><main class="stage"><div class="book" id="book"></div></main><script src="../scripts/story.js"></script><script src="../scripts/book-view.js"></script><script>
+STORY.forEach(p=>p.image='../'+p.image);
+let view=new BookView(document.querySelector('#book'),STORY),active;
+async function inspect(backward,time){if(active){active.cancel();await Promise.resolve();await Promise.resolve();}view.render(backward?1:0);view.turn(backward?1:0,backward?0:1).catch(()=>{});active=document.querySelector('.leaf').getAnimations()[0];active.pause();active.currentTime=time;}
+document.querySelector('#front').onclick=()=>inspect(false,160);
+document.querySelector('#back').onclick=()=>inspect(false,500);
+document.querySelector('#reverse').onclick=()=>inspect(true,500);
+inspect(false,500);
+</script></html>
+

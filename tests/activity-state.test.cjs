@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict');
+require('../scripts/activity-state.js');
+const state=new ActivityState();
+assert.equal(state.page(4),state.page(4),'revisiting a page preserves its state');
+state.discover(4,'toolbox');state.discover(4,'toolbox');
+assert.deepEqual(state.page(4).found,['toolbox'],'discoveries are unique');
+state.setColor('#315f94');assert.equal(state.color,'#315f94');
+state.addStroke(2,[[.1,.2],[.8,.9]],'#222');
+assert.equal(state.page(2).strokes.length,1);
+assert.equal(state.page(7).strokes.length,0,'drawing and painting are separate');
+assert.equal(ActivityState.clamp(2),1);assert.equal(ActivityState.clamp(-1),0);
+assert.ok(Math.abs(ActivityState.angleDelta(179,-179)-2)<.001,'circular drag crosses seam');
+assert.ok(Math.abs(ActivityState.angleDelta(-179,179)+2)<.001);
+state.reset();assert.equal(state.page(4).found.length,0);assert.equal(state.color,'#b8322b');
+console.log('PASS activity state: revisits, unique discoveries, paint, drawings, bounds, rotation seam, reset');

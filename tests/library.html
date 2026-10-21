@@ -1,0 +1,7 @@
+<!doctype html><html><meta charset="utf-8"><title>Library layout checks</title><pre id="results">Running</pre><div id="host"></div><script>
+(async()=>{const results=[];for(const [w,h] of [[320,568],[390,844],[768,1024],[1280,720],[1440,900],[1920,1080]]){const f=document.createElement('iframe');f.width=w;f.height=h;f.src='../index.html';document.querySelector('#host').append(f);await new Promise(r=>f.onload=r);const d=f.contentDocument;results.push((d.documentElement.scrollWidth<=w?'PASS':'FAIL')+' '+w+'px: library horizontal fit');results.push((d.documentElement.scrollHeight<=h?'PASS':'FAIL')+' '+w+'x'+h+': library vertical fit');const end=d.querySelector('.collection').getBoundingClientRect().bottom;const clear=['.cover-link','.open-book'].every(s=>d.querySelector(s).getBoundingClientRect().bottom<=end);results.push((clear?'PASS':'FAIL')+' book and footer clearance');const b=d.querySelector('#fire-toggle');b.click();results.push((b.textContent==='Play fireplace'?'PASS':'FAIL')+' fireplace pause');f.remove();}document.querySelector('#results').textContent=results.join('\n');})();
+</script></html>
+
+
+
+

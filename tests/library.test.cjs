@@ -1,0 +1,15 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..'),home=fs.readFileSync(path.join(root,'index.html'),'utf8');
+assert(home.includes('reader.html'),'library must open the existing reader');
+assert(home.includes('id="fire"'),'library needs its fireplace');
+const reader=fs.readFileSync(path.join(root,'reader.html'),'utf8');
+assert(reader.includes('id="book"')&&reader.includes('href="index.html"'),'reader and return route must remain available');
+const {FireField}=require('../scripts/fireplace.js');
+const fire=new FireField(64,80,()=>.5);
+for(let i=0;i<90;i++)fire.step(i/30);
+assert(fire.heat.every(Number.isFinite),'heat must stay finite');
+assert(fire.heat.some(v=>v>.3),'fire must generate heat');
+assert(fire.heat.every(v=>v>=0&&v<=1),'heat stays bounded');
+const bottom=fire.heat.slice(64*65).reduce((a,b)=>a+b,0),top=fire.heat.slice(0,64*15).reduce((a,b)=>a+b,0);
+assert(bottom>top,'rising heat must cool toward the chimney');
+console.log('PASS library routes and bounded rising heat simulation');

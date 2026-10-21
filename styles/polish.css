@@ -1,0 +1,128 @@
+/* A consistent reading surface in portrait and landscape; always two facing pages. */
+.stage{max-width:min(1120px,max(540px,calc((100svh - 190px)*1.5)))}
+.book{height:clamp(500px,calc(100svh - 190px),840px);min-height:500px;aspect-ratio:auto}
+.controls{flex-wrap:wrap;row-gap:8px}.controls button{min-height:44px}
+.story-object{min-width:44px;min-height:44px}.story-object.held{will-change:transform,left,top}
+.activity-caption{font-size:clamp(11px,1.1vw,14px);line-height:1.35;padding:6px 8px}
+.activity-scene .paper-eraser{min-height:28px}
+.book-paused *{animation-play-state:paused!important}
+.scene-11 .story-object svg{transform-origin:50% 70%;animation:weightless-breath 4s ease-in-out infinite alternate}
+.scene-11 .held svg{animation-play-state:paused}
+@keyframes weightless-breath{from{transform:rotate(-2deg) translateY(-1px)}to{transform:rotate(2deg) translateY(2px)}}
+@media(max-width:600px){body{padding:16px 10px}.stage{margin-top:18px}.book>.illustrated,.leaf>.illustrated{--page-gutter:clamp(10px,3vw,18px)}.interior.illustrated h2{font-size:clamp(16px,3.1vw,20px)}.hint{padding:0 8px}.activity-caption{font-size:10px;line-height:1.25}}
+@media(max-width:400px){.book>.interior.illustrated,.leaf>.interior.illustrated{grid-template-rows:54% auto minmax(0,1fr) auto}.activity-scene{height:51%}.interior.illustrated .reading{font-size:15px;line-height:1.4}.cover.illustrated h2{font-size:22px}.controls{gap:5px}.controls button{padding:10px}.position{min-width:68px;font-size:11px}.masthead{font-size:9px;letter-spacing:2px}.activity-caption{font-size:9px}}
+@media(max-height:600px) and (min-width:700px){body{padding-top:12px}.stage{margin-top:12px}.book{height:500px}.masthead{font-size:9px}.prototype{display:none}}
+@media(prefers-reduced-motion:reduce){.scene-11 .story-object svg{animation:none}.activity-scene *{transition:none!important;animation:none!important}}
+@media(max-width:600px){.stage:before{inset:8px -6px -12px -8px}}
+/* Objects inherit the scene's light rather than an identical sticker-like glow. */
+.activity-scene{--contact-shadow:#30201965;--lift-shadow:#21181250;--art-warmth:1.02}
+.scene-1,.scene-5,.scene-6,.scene-7,.scene-8{--contact-shadow:#36220e70;--art-warmth:1.06}
+.scene-9,.scene-10,.scene-11,.scene-12{--contact-shadow:#101d3455;--art-warmth:.96}
+.scene-13,.scene-14,.scene-15{--contact-shadow:#743a235e;--art-warmth:1.04}
+.activity-scene .story-object{filter:drop-shadow(1px 2px 1.5px var(--contact-shadow));transition:left .48s cubic-bezier(.22,.75,.25,1),top .48s cubic-bezier(.22,.75,.25,1),width .48s,rotate .3s,scale .25s,filter .25s,opacity .45s;transform-origin:50% 78%}
+.story-object>svg{filter:saturate(.88) brightness(var(--art-warmth));transition:filter .4s}
+.activity-scene .story-object:hover{filter:drop-shadow(1px 3px 2px var(--contact-shadow))}
+.activity-scene .story-object.held{transition:filter .2s,scale .2s;scale:1.025;filter:drop-shadow(3px 8px 5px var(--lift-shadow));z-index:6}
+.activity-scene .story-object:focus-visible{outline:2px solid #f4d38f;outline-offset:2px}
+.activity-caption{background:radial-gradient(ellipse,#f6e5bbab 25%,#f6e5bb00 73%);color:#574330;text-shadow:0 1px 1px #fff7;transition:opacity .3s}
+.activity-scene.interacting .activity-caption{opacity:.38}
+.sketch-paper,.shopping-note,.loose-paper{background-color:#dfcea7;box-shadow:1px 2px 3px #34230e60,inset 0 0 22px #a1753930}
+.paint-surface{mix-blend-mode:multiply;opacity:.88}
+.inspection-panel,.instrument-panel{box-shadow:1px 3px 5px #211c2066,inset 0 1px 2px #f3d5a055}
+.illustration img{transition:filter .7s ease,transform .35s ease-out}
+.scene-11 .story-object{transition:filter .25s!important}
+.scene-11 .story-object:not(.held){filter:drop-shadow(5px 12px 10px #111a3030)}
+.scene-13 .landing-shadow{transition:left .48s cubic-bezier(.22,.75,.25,1),scale .5s,opacity .5s,filter .5s}
+.scene-13 .story-object:first-of-type{transition:top .65s cubic-bezier(.22,.75,.25,1),left .48s cubic-bezier(.22,.75,.25,1),rotate .4s}
+.scene-14 .story-object{filter:drop-shadow(1px 3px 2px #743a2370);transition:left .8s ease-in-out,top .8s ease-in-out}
+.scene-15 .story-object,.scene-15 .pocket-notebook{transition:left .5s cubic-bezier(.22,.75,.25,1),top .5s cubic-bezier(.22,.75,.25,1),filter .25s}
+.backpack-zip{transition:translate .5s cubic-bezier(.22,.75,.25,1),opacity .5s}
+.rocket-blueprint{filter:drop-shadow(1px 3px 2px #36220e55)!important;transition:opacity .6s!important}
+@media(prefers-reduced-motion:reduce){.activity-scene .story-object,.scene-13 .landing-shadow,.illustration img{transition:none!important}}
+/* Grounded props have a soft contact pool; airborne Biscuit deliberately does not. */
+.scene-6 .upright-rocket:before,.scene-7 .upright-rocket:before,.scene-15 .story-object:disabled:before{content:'';position:absolute;left:22%;right:20%;bottom:7%;height:7%;background:radial-gradient(ellipse,#36220e60,transparent 70%);filter:blur(2px);z-index:-1;pointer-events:none}
+.scene-1 .story-object{transform-origin:58% 72%}
+.scene-6 .story-object.fitted{scale:.92}
+.scene-5 .story-object>svg{transition:filter .7s}.garage-lit .story-object>svg{filter:saturate(.93) brightness(1.1)}
+.scene-15 .pocket-notebook{background:linear-gradient(100deg,#384e54 7%,#233e4a 9%,#4e6570 14%,#324e58)!important;box-shadow:1px 2px #cabb95,2px 4px 3px #35291d55}
+/* Flight controls belong to a fixed console, not the open sky. */
+.flight-control{position:absolute;right:5%;top:53%;width:32%;height:32%;z-index:5;border:2px solid #66513a;border-radius:10px 10px 5px 5px;background:radial-gradient(circle at 8% 10%,#d6c49b 0 1px,transparent 2px),radial-gradient(circle at 92% 90%,#d6c49b 0 1px,transparent 2px),linear-gradient(125deg,#706653,#303c3d 55%,#293234);box-shadow:0 3px 4px #22190e66,inset 0 1px #dfc69580;pointer-events:none;isolation:isolate}
+.control-plate{position:absolute;top:6%;left:10%;right:10%;text-align:center;font:600 clamp(8px,.8vw,11px)/1.2 system-ui,sans-serif;letter-spacing:.12em;color:#eddbad;text-shadow:0 1px #151d21;pointer-events:none}
+.control-track{position:absolute;left:43%;top:30%;bottom:12%;width:14%;border-radius:50%;background:#121c20;box-shadow:inset 1px 1px 3px #0008,1px 0 #d8c39455}
+.activity-scene .flight-control .mounted-control{left:8%!important;top:18%!important;width:84%!important;height:78%;aspect-ratio:auto;min-width:44px;min-height:44px;transform-origin:50% 78%;filter:drop-shadow(1px 2px 1px #17151080);cursor:pointer;scale:1;transition:rotate .18s,filter .2s}
+.flight-control .mounted-control svg{height:100%;width:100%;object-fit:contain}
+.activity-scene .flight-control .mounted-control.held{scale:1;cursor:grabbing;filter:drop-shadow(1px 2px 1px #17151080)}
+.control-gauge{position:absolute;left:9%;top:36%;height:45%;width:6%;border:1px solid #a38c61;background:#172526;overflow:hidden;border-radius:2px}
+.control-gauge:after{content:'';position:absolute;inset:0;background:linear-gradient(#ead27e,#9daa75);transform:scaleY(var(--level,0));transform-origin:bottom;transition:transform .1s linear}
+.control-active{box-shadow:0 3px 4px #22190e66,inset 0 1px #dfc69580,0 0 9px #d8bc7140}
+.scene-12 .flight-control{top:57%;height:28%}.scene-13 .flight-control{right:3%;width:29%;top:54%;height:31%}
+.activity-caption{font-family:system-ui,sans-serif;font-style:normal;font-size:clamp(10px,.95vw,12px);font-weight:500;letter-spacing:.01em;line-height:1.4;background:linear-gradient(90deg,transparent,#f5e6c6b3 20%,#f5e6c6b3 80%,transparent);border-radius:0;padding:4px 3px;left:5%;right:5%;text-shadow:none}
+.keyboard-hint{font-size:.9em;opacity:.65}
+@media(max-width:400px){.activity-caption{font-size:9px;left:3%;right:3%}.control-plate{font-size:8px;letter-spacing:.04em}.flight-control{right:4%;width:35%;border-width:1px}}
+@media(prefers-reduced-motion:reduce){.control-gauge:after,.activity-scene .flight-control .mounted-control{transition:none!important}}
+/* Exterior launch uses the pictured rocket directly; no detached control prop. */
+.rocket-launch-target{position:absolute;left:12%;top:2%;width:76%;height:79%;border-radius:45% 45% 25% 25%;z-index:3;cursor:pointer!important;background:transparent!important}
+.rocket-launch-target:focus-visible{outline:2px dashed #f9e4af;outline-offset:-5px;filter:none!important}
+.engines-on .rocket-launch-target{cursor:grabbing!important}
+.scene-13 .flight-control{right:-1%;border-radius:10px 0 0 6px;border-right:0}
+/* Artwork coordinates follow the same cover scale/crop as the painting. */
+.page{container-type:size;--art-unit:max(calc(100cqw / 1024),calc(100cqh / 1536))}
+.interior.illustrated .illustration img{object-position:calc(var(--art-focus,.5) * 100%) top}
+.art-anchored{position:absolute;transform:none;rotate:none;box-sizing:border-box}
+.activity-scene .art-target{position:absolute;background:transparent!important;border:0!important;box-shadow:none;min-width:32px;min-height:32px;border-radius:18%;cursor:pointer;z-index:4;transition:box-shadow .3s}
+.activity-scene .art-target:focus-visible{outline:2px dashed #fff0bb;outline-offset:2px;filter:none}
+.art-target:hover{box-shadow:inset 0 0 0 1px #ffe9aa66}
+.art-target.discovered:after{content:'✓';position:absolute;right:0;bottom:0;width:17px;height:17px;display:grid;place-items:center;border-radius:50%;background:#f0dfb3;color:#415f42;font:bold 12px system-ui;box-shadow:0 1px 3px #34261b44;pointer-events:none}
+.activity-scene .sketch-paper{background:#e7d5ae;box-shadow:none;border:0;border-radius:0;clip-path:polygon(20% 12%,100% 0,72% 100%,0 95%);z-index:3}
+.sketch-paper:before{display:none}.sketch-paper svg{mix-blend-mode:multiply}
+.activity-reset{position:absolute;right:4%;bottom:12%;z-index:8;font:10px/1.3 system-ui!important;padding:5px 8px!important;min-height:28px;color:#574b35!important;background:#f2e4c9e6!important;border:1px solid #ad96644d!important;border-radius:20px;cursor:pointer!important}
+.activity-scene .shopping-note{padding:0;background:transparent;box-shadow:none;border:0;font-size:0;pointer-events:none;rotate:0;transform:none}
+.shopping-note.circled{border:2px solid #92584477;border-radius:15%}
+.activity-scene .fan-target .fan-blades{left:5%;top:2%;width:90%;height:76%;transform:none}
+.activity-scene .fan-target.fan-running{animation:none}
+.activity-scene .countdown-display{display:grid;place-items:center;border:1px solid #7e582c;background:radial-gradient(ellipse,#f7ce76,#bd7e36);border-radius:50%;font:600 clamp(10px,1.2vw,18px)/1 Georgia;color:#513c22;text-shadow:none;box-shadow:inset 0 1px 4px #52361688;z-index:3;pointer-events:none}
+.igniting .countdown-display{color:#62401e;box-shadow:0 0 8px #ffd78288,inset 0 1px 4px #52361688}
+.scene-8 .screw-target:before{content:'';position:absolute;left:17%;top:22%;width:20%;height:34%;border:1px solid #a79673;border-radius:50%;background:linear-gradient(20deg,#bcb19a,#635d4d);transform:rotate(calc(var(--tightness,0) * 720deg)) scale(calc(1 - var(--tightness,0) * .15));pointer-events:none}
+.scene-12 .passing-comet{display:none}
+.scene-13 .landing-rocket{cursor:grab;touch-action:none}.scene-13 .landing-rocket.held{transition:none;scale:1}
+.scene-15 .backpack-zip{left:45%;top:58%;width:20%;height:30px}.scene-15 .pocket-notebook{width:19%;height:18%;font-size:6px!important}
+.scene-15 .pocket-notebook,.scene-15 .story-object:not(:disabled){filter:drop-shadow(1px 2px 1px #743a2370)}
+@media(prefers-reduced-motion:reduce){.art-target{transition:none!important}}
+.page{container-type:normal;--art-unit:1px}
+.activity-reset{bottom:0;right:4%;padding:4px 8px!important;min-height:24px}
+.scene-2 .activity-caption,.scene-7 .activity-caption{right:29%;text-align:left}
+.activity-scene .sketch-paper{background:transparent}
+.activity-scene .mars-lens{background:transparent;border:0;border-radius:50%;box-shadow:0 0 14px #ffc58699,inset 0 0 12px #ffdc9c88;pointer-events:none}
+.activity-scene .backpack-zip{translate:none;transition:none}.backpack-zip:before,.backpack-zip:after{display:none}
+.activity-scene .backpack-item{z-index:6;border-radius:8px;min-width:24px;min-height:24px}
+.scene-7 .paint-surface{left:66%;top:41%;width:20%;height:39%}
+.scene-6 .rocket-blueprint,.scene-7 .paint-rocket{transform-origin:50% 70%}
+/* Full-browser reader: reserve explicit room for navigation, then fill the rest. */
+@media(min-width:900px) and (min-height:600px){
+ body{height:100dvh;min-height:0;padding:12px 28px 10px;display:grid;grid-template-rows:20px minmax(0,1fr) 44px 34px;gap:8px;justify-items:center}
+ .masthead{width:min(1600px,100%);font-size:11px}
+ .stage{width:min(1600px,100%,calc((100dvh - 150px)*1.75));max-width:none;height:100%;min-height:0;margin:0}
+ .book{height:100%;min-height:0;max-height:none}
+ .controls{min-height:0;flex-wrap:nowrap;gap:18px}
+ .hint{margin:0;font-size:11px;line-height:1.4}.prototype{display:none}
+ .interior.illustrated .reading{font-size:clamp(21px,1.65vw,29px);line-height:1.45}
+ .interior.illustrated h2{font-size:clamp(28px,2.3vw,42px);margin-bottom:10px}
+ .cover.illustrated h2{font-size:clamp(42px,4vw,68px)}
+ .cover.illustrated .reading{font-size:clamp(21px,1.7vw,29px)}
+ .activity-caption{font-size:clamp(12px,1vw,16px)}
+}
+@media(min-width:900px) and (min-height:600px){
+ .interior.illustrated .illustration:after{background:linear-gradient(180deg,transparent 48%,#f8efd9dd 60%,#f8efd9ed 100%)}
+ .stage{width:min(1600px,100%,calc((100dvh - 150px)*1.6))}
+}
+
+/* A reading spread fills the available desktop, with navigation kept in view. */
+@media(min-width:900px) and (min-height:600px){
+ body{padding:8px 16px 6px;grid-template-rows:18px minmax(0,1fr) 40px 18px;gap:6px}
+ .stage{width:100%;max-width:1900px;height:100%;margin:0}
+ .book{height:100%;min-height:0;aspect-ratio:auto}
+ .masthead{width:100%;max-width:1900px}
+ .interior.illustrated .reading{font-size:clamp(22px,1.8vw,32px)}
+}
+
+@media(min-width:900px) and (min-height:600px){.hint .keyboard-hint{display:none}}
