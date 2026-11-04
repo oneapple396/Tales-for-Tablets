@@ -1,5 +1,5 @@
 /* Foreground objects share the illustration's lighting and stay above its paper grain. */
-.activity-scene{position:absolute;inset:0 0 auto;height:56%;z-index:4;pointer-events:none;isolation:isolate;overflow:hidden;border-radius:inherit;color:#35291e;font-family:Georgia,serif}
+.activity-scene{position:absolute;inset:0 0 auto;height:56%;z-index:4;pointer-events:auto;isolation:isolate;overflow:hidden;border-radius:inherit;color:#35291e;font-family:Georgia,serif}
 .activity-scene button,.activity-scene [data-interactive]{pointer-events:auto;touch-action:none;-webkit-user-select:none;user-select:none}
 .activity-scene button{font:inherit;border:0;padding:0;background-color:transparent;color:inherit;cursor:grab}
 .activity-scene button:disabled{pointer-events:none;opacity:1;cursor:default}
