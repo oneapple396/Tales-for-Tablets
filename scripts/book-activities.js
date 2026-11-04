@@ -190,6 +190,13 @@ globalThis.BookActivities=class BookActivities {
     const items=[],names=['flashlight','notebook','rubber duck'],rects=[[445,505,62,77],[500,495,72,82],[570,510,64,70]];
     names.forEach((name,i)=>{const item=this.target(scene,'Search the '+name,'backpack-item',rects[i]);items.push(item);const discover=()=>{this.state.discover(index,name);this.acknowledge(item);if(i<2)items[i+1].hidden=false;this.say(scene,s.found.length===3?'WE FORGOT THE SNACKS!':name==='notebook'?'A notebook. Still no lunch.':'A '+name+'. But no sandwiches.');if(s.found.length===3)this.sound('rumble');};this.drag(item,scene,{end:(_,cancelled)=>{if(!cancelled)discover();},key:k=>{if(['Enter',' ','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(k))discover();}});item.hidden=!s.open||(i>0&&!s.found.includes(names[i-1]));if(s.found.includes(name))item.classList.add('discovered');});
     const open=()=>{s.open=true;items[0].hidden=false;zipper.classList.add('unzipped');zipper.hidden=true;this.sound('zip');this.say(scene,'Tap each thing inside. Where is lunch?');};
-    this.drag(zipper,scene,{end:(_,cancelled)=>{if(!cancelled)open();},key:open});if(s.open){zipper.classList.add('unzipped');zipper.hidden=true;}this.say(scene,s.found.length===3?'WE FORGOT THE SNACKS!':'Tap the backpack to search for lunch.');
+    this.drag(zipper,scene,{end:(_,cancelled)=>{if(!cancelled)open();},key:open});if(s.open){zipper.classList.add('unzipped');zipper.hidden=true;}this.say(scene,s.found.length===3?'WE FORGOT THE SNACKS!':'Tap the backpack to search for lunch.');this.readerCreation(scene);
+  }
+  readerCreation(scene){
+    const source=this.state.page(2)?.strokes||[];if(!source.length)return;
+    const wrap=this.element('div','reader-creation',scene);wrap.setAttribute('aria-label','Your rocket drawing, carried into the story');
+    const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 300 220');
+    for(const stroke of source){const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',stroke.points.map(([x,y],i)=>(i?'L':'M')+(x*300)+' '+(y*220)).join(' '));path.setAttribute('stroke',stroke.color);path.setAttribute('stroke-width','3');path.setAttribute('fill','none');path.setAttribute('stroke-linecap','round');path.setAttribute('stroke-linejoin','round');svg.append(path);}
+    wrap.append(svg);this.anchor(wrap,[670,360,180,130]);
   }
 };

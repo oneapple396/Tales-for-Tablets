@@ -2,7 +2,7 @@
 globalThis.BookInput = class BookInput {
   constructor(book,controller,audio) {
     this.gesture=null;
-    const interactive=target=>target.closest('[data-interactive],button,a,input,textarea,select,[contenteditable]');
+    const interactive=target=>target.closest('.activity-scene,[data-interactive],button,a,input,textarea,select,[contenteditable]');
     const stop=()=>{this.gesture=null;controller.endHold();};
     book.addEventListener('pointerdown',e=>{
       if(this.gesture||e.button!==0||e.isPrimary===false||interactive(e.target))return;

@@ -43,6 +43,7 @@ globalThis.BookView = class BookView {
     if(index>0){const hint=document.createElement('span');hint.className='reading-hint';hint.textContent='More story below ↓';hint.hidden=true;hint.setAttribute('aria-hidden','true');folio.prepend(hint);}
     reading.addEventListener('scroll',()=>this.updateReadingHint(reading),{passive:true});
     this.activities?.decorate(page,index);
+    this.activities?.layout(page);
     return page;
   }
   render(index) {
